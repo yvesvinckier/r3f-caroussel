@@ -1,0 +1,30 @@
+{
+  "name": "r3f-caroussel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "r3f-caroussel",
+  "author": "Yves Vinckier",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "gatsby": "^5.12.4",
+    "gatsby-plugin-emotion": "^8.12.0",
+    "gatsby-plugin-image": "^3.12.0",
+    "gatsby-plugin-sharp": "^5.12.0",
+    "gatsby-plugin-sitemap": "^6.12.0",
+    "gatsby-source-filesystem": "^5.12.0",
+    "gatsby-transformer-sharp": "^5.12.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
