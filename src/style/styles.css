@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  scroll-behavior: none;
+  height: 100vh;
+  user-select: none;
+}
+
+canvas {
+  height: 100vh;
+}
