@@ -1,19 +1,17 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 
-import CarouselItem from "../three/CarouselItem";
+import Carousel from "../three/Carousel";
 import "../style/styles.css";
-
-// import images from "../data/images";
 
 const IndexPage = () => {
   return (
     <>
-      <Canvas>
-        <Suspense fallback={null}>
-          <CarouselItem />
-        </Suspense>
-      </Canvas>
+      <Suspense fallback={null}>
+        <Canvas>
+          <Carousel />
+        </Canvas>
+      </Suspense>
     </>
   );
 };

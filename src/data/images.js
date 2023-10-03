@@ -1,39 +1,52 @@
+import img1 from "../../static/1.jpg";
+import img2 from "../../static/2.jpg";
+import img3 from "../../static/3.jpg";
+import img4 from "../../static/4.jpg";
+import img5 from "../../static/5.jpg";
+import img6 from "../../static/6.jpg";
+import img7 from "../../static/7.jpg";
+import img8 from "../../static/8.jpg";
+import img9 from "../../static/9.jpg";
+import img10 from "../../static/10.jpg";
+import img11 from "../../static/11.jpg";
+import img12 from "../../static/12.jpg";
+
 const images = [
   {
-    image: "img/1.jpg",
+    image: img1,
   },
   {
-    image: "img/2.jpg",
+    image: img2,
   },
   {
-    image: "img/3.jpg",
+    image: img3,
   },
   {
-    image: "img/4.jpg",
+    image: img4,
   },
   {
-    image: "img/5.jpg",
+    image: img5,
   },
   {
-    image: "img/6.jpg",
+    image: img6,
   },
   {
-    image: "img/7.jpg",
+    image: img7,
   },
   {
-    image: "img/8.jpg",
+    image: img8,
   },
   {
-    image: "img/9.jpg",
+    image: img9,
   },
   {
-    image: "img/10.jpg",
+    image: img10,
   },
   {
-    image: "img/11.jpg",
+    image: img11,
   },
   {
-    image: "img/12.jpg",
+    image: img12,
   },
 ];
 

@@ -2,25 +2,11 @@ import React, { useEffect, useMemo, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import gsap from "gsap";
-// import { useControls } from "leva";
 
-const Plane = ({ image, width, height, isActive }) => {
+const Plane = ({ texture, width, height, active, ...props }) => {
   const meshRef = useRef();
   const { viewport } = useThree();
-  const texture = useTexture(image);
-
-  // const { width, height } = useControls({
-  //   width: {
-  //     value: 2,
-  //     min: 0.5,
-  //     max: viewport.width,
-  //   },
-  //   height: {
-  //     value: 3,
-  //     min: 0.5,
-  //     max: viewport.height,
-  //   },
-  // });
+  const tex = useTexture(texture);
 
   useEffect(() => {
     if (meshRef.current.material) {
@@ -31,39 +17,31 @@ const Plane = ({ image, width, height, isActive }) => {
         viewport.height / height;
 
       gsap.to(meshRef.current.material.uniforms.uProgress, {
-        value: isActive ? 1 : 0,
-        duration: 2.5,
-        ease: "power3.out,",
+        value: active ? 1 : 0,
       });
 
       gsap.to(meshRef.current.material.uniforms.uRes.value, {
-        x: isActive ? viewport.width : width,
-        y: isActive ? viewport.height : height,
-        duration: 2.5,
-        ease: "power3.out,",
+        x: active ? viewport.width : width,
+        y: active ? viewport.height : height,
       });
     }
-  }, [viewport, isActive, width, height]);
+  }, [viewport, active, width, height]);
 
   const shaderArgs = useMemo(
     () => ({
       uniforms: {
         uProgress: { value: 0 },
         uZoomScale: { value: { x: 1, y: 1 } },
-        uTexture: { value: texture },
+        uTex: { value: tex },
         uRes: { value: { x: 1, y: 1 } },
         uImageRes: {
-          value: {
-            x: texture.source.data.width,
-            y: texture.source.data.height,
-          },
+          value: { x: tex.source.data.width, y: tex.source.data.height },
         },
       },
       vertexShader: /* glsl */ `
-      varying vec2 vUv;
-      uniform float uProgress;
-      uniform vec2 uZoomScale;
-      
+        varying vec2 vUv;
+        uniform float uProgress;
+        uniform vec2 uZoomScale;
 
         void main() {
           vUv = uv;
@@ -73,17 +51,16 @@ const Plane = ({ image, width, height, isActive }) => {
           float c = sin(length(uv - .5) * 15. + uProgress * 12.) * .5 + .5;
           pos.x *= mix(1., uZoomScale.x + wave * c, uProgress);
           pos.y *= mix(1., uZoomScale.y + wave * c, uProgress);
-          
+
           gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
         }
-        `,
+      `,
       fragmentShader: /* glsl */ `
-      uniform sampler2D uTexture;
+      uniform sampler2D uTex;
       uniform vec2 uRes;
       uniform vec2 uZoomScale;
       uniform vec2 uImageRes;
-      
-      
+
       /*------------------------------
       Background Cover UV
       --------------------------------
@@ -98,21 +75,20 @@ const Plane = ({ image, width, height, isActive }) => {
         vec2 o = (rs < ri ? vec2((st.x - s.x) / 2.0, 0.0) : vec2(0.0, (st.y - s.y) / 2.0)) / st; // Offset
         return u * s / st + o;
       }
-      
-      varying vec2 vUv;
 
+      varying vec2 vUv;
         void main() {
           vec2 uv = CoverUV(vUv, uRes, uImageRes);
-          vec3 texture = texture2D(uTexture, uv).rgb;
-          gl_FragColor = vec4( texture, 1.0 );
+          vec3 tex = texture2D(uTex, uv).rgb;
+          gl_FragColor = vec4( tex, 1.0 );
         }
       `,
     }),
-    [texture]
+    [tex]
   );
 
   return (
-    <mesh ref={meshRef}>
+    <mesh ref={meshRef} {...props}>
       <planeGeometry args={[width, height, 30, 30]} />
       <shaderMaterial args={[shaderArgs]} />
     </mesh>
