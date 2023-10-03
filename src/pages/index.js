@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 
-import Plane from "../three/Plane";
+import CarouselItem from "../three/CarouselItem";
 import "../style/styles.css";
 
 // import images from "../data/images";
@@ -9,11 +9,11 @@ import "../style/styles.css";
 const IndexPage = () => {
   return (
     <>
-      <Suspense fallback={null}>
-        <Canvas>
-          <Plane />
-        </Canvas>
-      </Suspense>
+      <Canvas>
+        <Suspense fallback={null}>
+          <CarouselItem />
+        </Suspense>
+      </Canvas>
     </>
   );
 };

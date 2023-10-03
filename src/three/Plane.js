@@ -1,38 +1,55 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { useControls } from "leva";
+import gsap from "gsap";
+// import { useControls } from "leva";
 
-import img1 from "../../static/1.jpg";
-
-const Plane = () => {
+const Plane = ({ image, width, height, isActive }) => {
   const meshRef = useRef();
   const { viewport } = useThree();
-  const texture = useTexture(img1);
+  const texture = useTexture(image);
 
-  const { width, height } = useControls({
-    width: {
-      value: 2,
-      min: 0.5,
-      max: viewport.width,
-    },
-    height: {
-      value: 3,
-      min: 0.5,
-      max: viewport.height,
-    },
-  });
+  // const { width, height } = useControls({
+  //   width: {
+  //     value: 2,
+  //     min: 0.5,
+  //     max: viewport.width,
+  //   },
+  //   height: {
+  //     value: 3,
+  //     min: 0.5,
+  //     max: viewport.height,
+  //   },
+  // });
 
   useEffect(() => {
     if (meshRef.current.material) {
-      meshRef.current.material.uniforms.uRes.value.x = width;
-      meshRef.current.material.uniforms.uRes.value.y = height;
+      //  Setting the 'uZoomScale' uniform in the 'Plane' component to resize the texture proportionally to the dimensions of the viewport.
+      meshRef.current.material.uniforms.uZoomScale.value.x =
+        viewport.width / width;
+      meshRef.current.material.uniforms.uZoomScale.value.y =
+        viewport.height / height;
+
+      gsap.to(meshRef.current.material.uniforms.uProgress, {
+        value: isActive ? 1 : 0,
+        duration: 2.5,
+        ease: "power3.out,",
+      });
+
+      gsap.to(meshRef.current.material.uniforms.uRes.value, {
+        x: isActive ? viewport.width : width,
+        y: isActive ? viewport.height : height,
+        duration: 2.5,
+        ease: "power3.out,",
+      });
     }
-  }, [viewport, width, height]);
+  }, [viewport, isActive, width, height]);
 
   const shaderArgs = useMemo(
     () => ({
       uniforms: {
+        uProgress: { value: 0 },
+        uZoomScale: { value: { x: 1, y: 1 } },
         uTexture: { value: texture },
         uRes: { value: { x: 1, y: 1 } },
         uImageRes: {
@@ -43,17 +60,27 @@ const Plane = () => {
         },
       },
       vertexShader: /* glsl */ `
-        varying vec2 vUv;
+      varying vec2 vUv;
+      uniform float uProgress;
+      uniform vec2 uZoomScale;
+      
 
         void main() {
           vUv = uv;
           vec3 pos = position;
+          float angle = uProgress * 3.14159265 / 2.;
+          float wave = cos(angle);
+          float c = sin(length(uv - .5) * 15. + uProgress * 12.) * .5 + .5;
+          pos.x *= mix(1., uZoomScale.x + wave * c, uProgress);
+          pos.y *= mix(1., uZoomScale.y + wave * c, uProgress);
+          
           gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
         }
         `,
       fragmentShader: /* glsl */ `
       uniform sampler2D uTexture;
       uniform vec2 uRes;
+      uniform vec2 uZoomScale;
       uniform vec2 uImageRes;
       
       
