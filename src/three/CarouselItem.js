@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useThree } from "@react-three/fiber";
+import { navigate } from "gatsby";
+import { getSrc } from "gatsby-plugin-image";
 import gsap from "gsap";
 import Plane from "./Plane";
 
@@ -9,7 +11,8 @@ const CarouselItem = ({
   height,
   setActivePlane,
   activePlane,
-  item,
+  image,
+  slug,
 }) => {
   const groupRef = useRef();
   const [hover, setHover] = useState(false);
@@ -17,6 +20,7 @@ const CarouselItem = ({
   const [isCloseActive, setCloseActive] = useState(false);
   const { viewport } = useThree();
   const timeoutID = useRef();
+  const imageSrc = getSrc(image);
 
   useEffect(() => {
     if (activePlane === index) {
@@ -66,6 +70,7 @@ const CarouselItem = ({
       ref={groupRef}
       onClick={() => {
         setActivePlane(index);
+        navigate(slug);
       }}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
@@ -73,7 +78,7 @@ const CarouselItem = ({
       <Plane
         width={width}
         height={height}
-        texture={item.image}
+        texture={imageSrc}
         active={isActive}
       />
 

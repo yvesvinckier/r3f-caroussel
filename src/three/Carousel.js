@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { usePrevious } from "react-use";
 import gsap from "gsap";
+
 import CarouselItem from "./CarouselItem";
-import images from "../data/images";
 
 /*------------------------------
 Plane Settings
@@ -25,7 +25,7 @@ gsap.defaults({
 /*------------------------------
 Carousel
 ------------------------------*/
-const Carousel = () => {
+const Carousel = ({ works }) => {
   const [root, setRoot] = useState();
 
   const [activePlane, setActivePlane] = useState(null);
@@ -40,15 +40,15 @@ const Carousel = () => {
   const isDown = useRef(false);
   const speedWheel = 0.02;
   const speedDrag = -0.3;
-  const items = useMemo(() => {
+  const images = useMemo(() => {
     if (root) return root.children;
   }, [root]);
 
   /*--------------------
   Diaplay Items
   --------------------*/
-  const displayItems = (item, index, active) => {
-    gsap.to(item.position, {
+  const displayItems = (image, index, active) => {
+    gsap.to(image.position, {
       x: (index - active) * (planeSettings.width + planeSettings.gap),
       y: 0,
     });
@@ -60,8 +60,8 @@ const Carousel = () => {
   useFrame(() => {
     progress.current = Math.max(0, Math.min(progress.current, 100));
 
-    const active = Math.floor((progress.current / 100) * (items.length - 1));
-    items.forEach((item, index) => displayItems(item, index, active));
+    const active = Math.floor((progress.current / 100) * (images.length - 1));
+    images.forEach((image, index) => displayItems(image, index, active));
   });
 
   /*--------------------
@@ -105,11 +105,11 @@ const Carousel = () => {
   Click
   --------------------*/
   useEffect(() => {
-    if (!items) return;
+    if (!images) return;
     if (activePlane !== null && prevActivePlane === null) {
-      progress.current = (activePlane / (items.length - 1)) * 100; // Calculate the progress.current based on activePlane
+      progress.current = (activePlane / (images.length - 1)) * 100; // Calculate the progress.current based on activePlane
     }
-  }, [activePlane, items, prevActivePlane]);
+  }, [activePlane, images, prevActivePlane]);
 
   /*--------------------
   Render Plane Events
@@ -137,15 +137,17 @@ const Carousel = () => {
   const renderSlider = () => {
     return (
       <group ref={setRoot}>
-        {images.map((item, i) => (
+        {works.map(({ node: work }, i) => (
           <CarouselItem
             width={planeSettings.width}
             height={planeSettings.height}
             setActivePlane={setActivePlane}
             activePlane={activePlane}
-            key={item.image}
-            item={item}
+            key={i}
+            image={work.data.cover.gatsbyImageData}
             index={i}
+            works={works}
+            slug={`/${work.uid}/`}
           />
         ))}
       </group>

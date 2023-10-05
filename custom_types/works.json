@@ -1,0 +1,31 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "slug"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1,heading2,heading3,heading4,heading5,heading6",
+        "label": "title"
+      }
+    },
+    "cover": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "cover"
+      }
+    },
+    "description": {
+      "type": "Text",
+      "config": {
+        "label": "description"
+      }
+    }
+  }
+}
