@@ -4,6 +4,7 @@ import { usePrevious } from "react-use";
 import gsap from "gsap";
 
 import CarouselItem from "./CarouselItem";
+import { getPiramidalIndex } from "../utils";
 
 /*------------------------------
 Plane Settings
@@ -48,9 +49,11 @@ const Carousel = ({ works }) => {
   Diaplay Items
   --------------------*/
   const displayItems = (image, index, active) => {
+    const piramidalIndex = getPiramidalIndex(images, active)[index];
     gsap.to(image.position, {
       x: (index - active) * (planeSettings.width + planeSettings.gap),
-      y: 0,
+      y: images.length * -0.1 + piramidalIndex * 0.1,
+      // y: 0,
     });
   };
 
@@ -146,7 +149,6 @@ const Carousel = ({ works }) => {
             key={i}
             image={work.data.cover.gatsbyImageData}
             index={i}
-            works={works}
             slug={`/${work.uid}/`}
           />
         ))}

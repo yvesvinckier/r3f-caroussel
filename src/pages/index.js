@@ -9,11 +9,11 @@ const IndexPage = ({ data }) => {
   const works = data.allPrismicWorks.edges;
   return (
     <>
-      <Suspense fallback={null}>
-        <Canvas>
+      <Canvas>
+        <Suspense fallback={null}>
           <Carousel works={works} />
-        </Canvas>
-      </Suspense>
+        </Suspense>
+      </Canvas>
     </>
   );
 };

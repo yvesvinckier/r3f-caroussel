@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=News+Cycle&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +8,7 @@
 }
 
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
   scroll-behavior: none;
   height: 100vh;
   user-select: none;
@@ -13,4 +16,13 @@ body {
 
 canvas {
   height: 100vh;
+}
+
+h1 {
+  font-family: "Italiana", serif;
+  font-size: 12vw;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.7em;
+  font-style: italic;
 }

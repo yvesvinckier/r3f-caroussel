@@ -70,7 +70,10 @@ const CarouselItem = ({
       ref={groupRef}
       onClick={() => {
         setActivePlane(index);
-        navigate(slug);
+        // navigate(slug);
+        setTimeout(() => {
+          navigate(slug);
+        }, 1900);
       }}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}

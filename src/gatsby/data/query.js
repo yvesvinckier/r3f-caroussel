@@ -6,7 +6,7 @@ module.exports.data = {
                     uid
                     data {
                         cover {
-                            gatsbyImageData
+                            gatsbyImageData(width: 1800, placeholder: BLURRED)
                             alt
                         }
                         title {

@@ -1,4 +1,6 @@
 import React from "react";
+import Hero from "../components/templates/Hero";
+import Content from "../components/templates/Content";
 
 const work = ({ pageContext }) => {
   const { title, cover, description } = pageContext.data;
@@ -6,7 +8,8 @@ const work = ({ pageContext }) => {
 
   return (
     <>
-      <div>{title.text}</div>
+      <Hero title={title} cover={cover} />
+      <Content description={description} />
     </>
   );
 };
