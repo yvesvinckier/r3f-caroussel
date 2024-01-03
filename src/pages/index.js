@@ -1,20 +1,30 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { graphql } from "gatsby";
+import styled from "@emotion/styled";
 
 import Carousel from "../three/Carousel";
+import Logo from "../components/general/Logo";
 import "../style/styles.css";
+
+const StyledBackground = styled.div`
+  background: #151515;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`;
 
 const IndexPage = ({ data }) => {
   const works = data.allPrismicWorks.edges;
   return (
-    <>
-      <Canvas>
-        <Suspense fallback={null}>
+    <StyledBackground>
+      <Suspense fallback={null}>
+        <Canvas>
           <Carousel works={works} />
-        </Suspense>
-      </Canvas>
-    </>
+        </Canvas>
+      </Suspense>
+      <Logo />
+    </StyledBackground>
   );
 };
 

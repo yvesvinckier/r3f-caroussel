@@ -4,7 +4,7 @@ import Content from "../components/templates/Content";
 
 const work = ({ pageContext }) => {
   const { title, cover, description } = pageContext.data;
-  const { next } = pageContext;
+  // const { next } = pageContext;
 
   return (
     <>

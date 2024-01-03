@@ -37,20 +37,20 @@ const BgImg = styled(GatsbyImage)`
     object-position: 50% 50% !important;
   }
 `;
-const BgContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-  }
-`;
+// const BgContainer = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   width: 100%;
+//   height: 100%;
+//   & > img {
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover !important;
+//     object-position: 50% 50% !important;
+//   }
+// `;
 
 const Hero = ({ title, cover }) => {
   // const imageSrc = getSrc(cover);
