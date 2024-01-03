@@ -1,8 +1,9 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef } from "react";
 import styled from "@emotion/styled";
 import { GatsbyImage } from "gatsby-plugin-image";
 // import { getSrc } from "gatsby-plugin-image";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -56,9 +57,8 @@ const Hero = ({ title, cover }) => {
   // const imageSrc = getSrc(cover);
   const wordRef = useRef();
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      // use scoped selectors
+  useGSAP(
+    () => {
       gsap.from(wordRef.current.children, {
         y: "100%",
         opacity: 0,
@@ -66,10 +66,9 @@ const Hero = ({ title, cover }) => {
         ease: "expo",
         duration: 1.4,
       });
-    }, wordRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: wordRef }
+  ); // <-- scope for selector text (optional)
 
   return (
     <>

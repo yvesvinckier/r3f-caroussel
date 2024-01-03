@@ -1532,6 +1532,16 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.2.0.tgz#5f3d96ec6b2354ad6d8a28bf216a1d97b5426861"
   integrity sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==
 
+"@gsap/react@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@gsap/react/-/react-2.0.2.tgz#ec9fa2b9c25e10e3b2928c1f472d5f1e327ad383"
+  integrity sha512-Uo2lOBlGcwmkIE9EcPdsyDfg+DRAoboVvuWgvVIrsJ2tIZHcpFab82YNV0iWj9CNfTzIqGP44ziXqsCMkc8OEw==
+
+"@gsap/shockingly@^3.12.4", "gsap@npm:@gsap/shockingly":
+  version "3.12.4"
+  resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.12.4.tgz#800e0e924ca89a785a4fe2890e102911d0cac0ba"
+  integrity sha512-3SXz2Ziu1uWY1XgZcUOmLpvq5NZ7b748A0lQtZ7f9detWLL7+IZrsdxAiZw5Q5i1twfvOeLsaK5N+r3B8QRlVw==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
@@ -6500,10 +6510,6 @@ graphql@^16.7.1:
   version "16.8.1"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.1.tgz#1930a965bef1170603702acdb68aedd3f3cf6f07"
   integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
-
-gsap@./gsap-bonus.tgz:
-  version "3.6.1"
-  resolved "./gsap-bonus.tgz#b0d1dbf3d78ca6b2196fc0f8810f0eec2ddc1586"
 
 gzip-size@^6.0.0:
   version "6.0.0"
