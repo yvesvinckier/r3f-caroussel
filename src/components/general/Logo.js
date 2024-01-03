@@ -1,6 +1,13 @@
 import React, { useRef } from "react";
 import styled from "@emotion/styled";
 
+import { gsap } from "gsap"; // <-- import GSAP
+/* The following plugin is a Club GSAP perk */
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { useGSAP } from "@gsap/react"; // <-- import the hook from our React package
+
+gsap.registerPlugin(DrawSVGPlugin);
+
 const StyledLogoContainer = styled.div`
   position: absolute;
   bottom: 40px;
@@ -26,6 +33,111 @@ const Logo = () => {
   const rect10Ref = useRef();
   const circle1Ref = useRef();
   const circle2Ref = useRef();
+
+  const tl = useRef();
+
+  useGSAP(
+    () => {
+      tl.current = gsap
+        .timeline()
+        .set([circle1Ref.current, circle2Ref.current], { drawSVG: "0%" })
+        .from(parentRectRef.current.children, {
+          x: -200,
+          autoAlpha: 0,
+          scaleX: 0,
+          duration: 2,
+          stagger: {
+            each: 0.1,
+            from: "end",
+          },
+        })
+        .to(rect2Ref.current, {
+          skewX: 22.5,
+          transformOrigin: "left",
+          duration: 2,
+        })
+        .to(
+          rect4Ref.current,
+          {
+            skewX: 13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect5Ref.current,
+          {
+            skewX: -13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect6Ref.current,
+          {
+            skewX: 13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect7Ref.current,
+          {
+            skewX: -13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect8Ref.current,
+          {
+            skewX: 13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect9Ref.current,
+          {
+            skewX: -13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          rect10Ref.current,
+          {
+            skewX: 13,
+            transformOrigin: "left",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          circle1Ref.current,
+          {
+            drawSVG: "100%",
+            duration: 2,
+          },
+          "-=2"
+        )
+        .to(
+          circle2Ref.current,
+          {
+            drawSVG: "100%",
+            duration: 2,
+          },
+          "-=2"
+        );
+    },
+    { scope: SVGRef }
+  );
   return (
     <StyledLogoContainer>
       <svg
