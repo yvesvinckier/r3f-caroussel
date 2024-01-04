@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   position: relative;
-  padding: 2.5em 1.5em;
   width: 100%;
   height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10%;
+  padding: 0 15%;
+  background: white;
   p {
     text-align: center;
     font-family: "Italiana", serif;

@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 
 import Carousel from "../three/Carousel";
-import Logo from "../components/general/Logo";
 import "../style/styles.css";
 
 const StyledBackground = styled.div`
@@ -23,7 +22,6 @@ const IndexPage = ({ data }) => {
           <Carousel works={works} />
         </Canvas>
       </Suspense>
-      <Logo />
     </StyledBackground>
   );
 };

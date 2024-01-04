@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "gatsby";
 import styled from "@emotion/styled";
 
 import { gsap } from "gsap"; // <-- import GSAP
@@ -9,16 +10,15 @@ import { useGSAP } from "@gsap/react"; // <-- import the hook from our React pac
 gsap.registerPlugin(DrawSVGPlugin);
 
 const StyledLogoContainer = styled.div`
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
+  position: relative;
+  mix-blend-mode: difference;
   width: 140px;
   svg {
     fill: #fff;
   }
 `;
 
-const Logo = () => {
+const NavLogo = () => {
   const SVGRef = useRef();
   const parentRectRef = useRef();
   const rect1Ref = useRef();
@@ -140,116 +140,118 @@ const Logo = () => {
   );
   return (
     <StyledLogoContainer>
-      <svg
-        ref={SVGRef}
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 590 110"
-      >
-        <g className="slashSVG" ref={parentRectRef}>
-          <rect
-            ref={rect1Ref}
-            fill="#fff"
-            y="2.6"
-            width="13.1"
-            height="104.8"
+      <Link to="/">
+        <svg
+          ref={SVGRef}
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 590 110"
+        >
+          <g className="slashSVG" ref={parentRectRef}>
+            <rect
+              ref={rect1Ref}
+              fill="#fff"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect2Ref}
+              fill="#fff"
+              x="34.4"
+              y="2.6"
+              width="13.2"
+              height="104.8"
+            />
+            <rect
+              ref={rect3Ref}
+              fill="#fff"
+              x="69"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect4Ref}
+              fill="#fff"
+              x="227.4"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect5Ref}
+              fill="#fff"
+              x="264.3"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect6Ref}
+              fill="#fff"
+              x="301.2"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect7Ref}
+              fill="#fff"
+              x="338"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect8Ref}
+              fill="#fff"
+              x="374.9"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect9Ref}
+              fill="#fff"
+              x="411.8"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+            <rect
+              ref={rect10Ref}
+              fill="#fff"
+              x="448.7"
+              y="2.6"
+              width="13.1"
+              height="104.8"
+            />
+          </g>
+          <circle
+            ref={circle1Ref}
+            fill="none"
+            stroke="#fff"
+            strokeWidth="12.2249"
+            strokeMiterlimit="10"
+            cx="534.9"
+            cy="55"
+            r="47.8"
           />
-          <rect
-            ref={rect2Ref}
-            fill="#fff"
-            x="34.4"
-            y="2.6"
-            width="13.2"
-            height="104.8"
+          <circle
+            ref={circle2Ref}
+            stroke="#fff"
+            fill="none"
+            strokeWidth="12.2249"
+            strokeMiterlimit="10"
+            cx="152.2"
+            cy="55"
+            r="47.8"
           />
-          <rect
-            ref={rect3Ref}
-            fill="#fff"
-            x="69"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect4Ref}
-            fill="#fff"
-            x="227.4"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect5Ref}
-            fill="#fff"
-            x="264.3"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect6Ref}
-            fill="#fff"
-            x="301.2"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect7Ref}
-            fill="#fff"
-            x="338"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect8Ref}
-            fill="#fff"
-            x="374.9"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect9Ref}
-            fill="#fff"
-            x="411.8"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-          <rect
-            ref={rect10Ref}
-            fill="#fff"
-            x="448.7"
-            y="2.6"
-            width="13.1"
-            height="104.8"
-          />
-        </g>
-        <circle
-          ref={circle1Ref}
-          fill="none"
-          stroke="#fff"
-          strokeWidth="12.2249"
-          strokeMiterlimit="10"
-          cx="534.9"
-          cy="55"
-          r="47.8"
-        />
-        <circle
-          ref={circle2Ref}
-          stroke="#fff"
-          fill="none"
-          strokeWidth="12.2249"
-          strokeMiterlimit="10"
-          cx="152.2"
-          cy="55"
-          r="47.8"
-        />
-      </svg>
+        </svg>
+      </Link>
     </StyledLogoContainer>
   );
 };
 
-export default Logo;
+export default NavLogo;
