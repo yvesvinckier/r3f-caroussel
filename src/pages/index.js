@@ -34,7 +34,7 @@ export const query = graphql`
           uid
           data {
             cover {
-              gatsbyImageData(width: 1800, placeholder: BLURRED)
+              gatsbyImageData(width: 3228, placeholder: NONE)
               alt
             }
             title {
