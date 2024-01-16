@@ -62,7 +62,7 @@ const CarouselItem = ({
     clearTimeout(timeoutID.current);
     timeoutID.current = setTimeout(() => {
       setCloseActive(false);
-    }, 1650); // The duration of this timer depends on the duration of the plane's closing animation.
+    }, 1600); // The duration of this timer depends on the duration of the plane's closing animation.
   };
 
   return (
