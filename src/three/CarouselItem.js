@@ -62,7 +62,7 @@ const CarouselItem = ({
     clearTimeout(timeoutID.current);
     timeoutID.current = setTimeout(() => {
       setCloseActive(false);
-    }, 1600); // The duration of this timer depends on the duration of the plane's closing animation.
+    }, 2600); // The duration of this timer depends on the duration of the plane's closing animation.
   };
 
   return (
@@ -73,7 +73,7 @@ const CarouselItem = ({
         // navigate(slug);
         setTimeout(() => {
           navigate(slug);
-        }, 1900);
+        }, 2600);
       }}
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
